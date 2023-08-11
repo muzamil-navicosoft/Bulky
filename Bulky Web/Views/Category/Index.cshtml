@@ -19,8 +19,8 @@
                 <td> @x.Name </td>
                 <td> @x.DisplayOrder </td>
                 <td>
-@*                    here the value od asp-route- ( id  should be the same as parameter )
-*@                    <a class="btn btn-warning" asp-controller="Category" asp-action="Edit" asp-route-id="@x.Id">  <i class="bi bi-pencil-square"></i> Edit  </a>
+                    @* here the value of asp-route-id ( id  should be the same as parameter we declared ) *@
+                    <a class="btn btn-warning" asp-controller="Category" asp-action="Edit" asp-route-id="@x.Id">  <i class="bi bi-pencil-square"></i> Edit  </a>
                     <a class="btn btn-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@x.Id">  <i class="bi bi-trash"></i> Delete  </a>
                 </td>
             </tr>

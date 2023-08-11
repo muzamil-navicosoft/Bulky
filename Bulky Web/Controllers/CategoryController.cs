@@ -34,6 +34,7 @@ namespace Bulky_Web.Controllers
             {
                 await _db.Categories.AddAsync(obj);
                 _db.SaveChanges();
+                TempData["Sucsess"] = " Category Created Sucessfuly";
                 return RedirectToAction("Index");
             }
             else
@@ -72,12 +73,29 @@ namespace Bulky_Web.Controllers
             {
                 _db.Categories.Update(obj);
                 _db.SaveChanges();
+                TempData["Sucsess"] = " Category Updated Sucessfuly";
                 return RedirectToAction("Index");
             }
             else
             {
                 return View(obj);
             }
+        }
+
+        public async Task<IActionResult> Delete( int? id)
+        {
+            var result = await _db.Categories.FindAsync(id);
+            if (result != null)
+            {
+                _db.Remove(result);
+                _db.SaveChanges();
+                TempData["Sucsess"] = " Category Deleted Sucessfuly";
+                return RedirectToAction("Index");
+            }else
+            {
+                return NotFound();
+            }
+
         }
     }
 }
