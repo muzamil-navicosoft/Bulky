@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Bulky_Web.Models
+namespace Bulky.Models
 {
     public class Category
     {
