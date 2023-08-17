@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var x in Model)
+        @foreach(var x in Model.OrderByDescending(x => x.DisplayOrder))
         {
             <tr class ="col-5 text-center table-light">
                 <td> @x.Name </td>
