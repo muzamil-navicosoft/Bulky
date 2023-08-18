@@ -8,15 +8,15 @@ namespace Bulky_Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _categoryRepository;
-        public CategoryController(ICategoryRepository categoryRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-                _categoryRepository = categoryRepository;
+                _unitOfWork = unitOfWork;
         }
         
         public IActionResult Index()
         {
-            var result =  _categoryRepository.GetAll();
+            var result =  _unitOfWork.Category.GetAll();
             return View(result);
         }
         public IActionResult Create()
@@ -33,8 +33,8 @@ namespace Bulky_Web.Controllers
             }
             if (ModelState.IsValid)
             {
-                _categoryRepository.Add(obj);
-                _categoryRepository.save();
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.save();
                 TempData["Sucsess"] = " Category Created Sucessfuly";
                 return RedirectToAction("Index");
             }
@@ -53,7 +53,7 @@ namespace Bulky_Web.Controllers
             }
             else
             {
-                var result = _categoryRepository.Get( x => x.Id == id);
+                var result = _unitOfWork.Category.Get( x => x.Id == id);
                 if(result != null)
                 {
 
@@ -72,8 +72,8 @@ namespace Bulky_Web.Controllers
             }
             if (ModelState.IsValid)
             {
-                _categoryRepository.update(obj);
-                _categoryRepository.save();
+                _unitOfWork.Category.update(obj);
+                _unitOfWork.save();
                 TempData["Sucsess"] = " Category Updated Sucessfuly";
                 return RedirectToAction("Index");
             }
@@ -85,11 +85,11 @@ namespace Bulky_Web.Controllers
 
         public IActionResult Delete(int id)
         {
-            var result =  _categoryRepository.GetById(id);
+            var result =  _unitOfWork.Category.GetById(id);
             if (result != null)
             {
-                _categoryRepository.Delete(result);
-                _categoryRepository.save();
+                _unitOfWork.Category.Delete(result);
+                _unitOfWork.save();
                 TempData["Sucsess"] = " Category Deleted Sucessfuly";
                 return RedirectToAction("Index");
             }else

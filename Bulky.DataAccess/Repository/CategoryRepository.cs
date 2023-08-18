@@ -15,10 +15,7 @@ namespace Bulky.DataAccess.Repository
         {
             _projectContext = projectContext;
         }
-        public void save()
-        {
-            _projectContext.SaveChanges();
-        }
+
 
         public void update(Category obj)
         {
