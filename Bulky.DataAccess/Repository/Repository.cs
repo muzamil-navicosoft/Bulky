@@ -49,9 +49,13 @@ namespace Bulky.DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public void Update(T entity)
+        public T GetById(object id)
         {
-            throw new NotImplementedException();
+            return _dbSet.Find(id);
         }
+        //public void Update(T entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
