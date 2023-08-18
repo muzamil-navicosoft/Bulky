@@ -4,19 +4,19 @@ using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bulky_Web.Controllers
+namespace Bulky_Web.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
         public CategoryController(IUnitOfWork unitOfWork)
         {
-                _unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
-        
+
         public IActionResult Index()
         {
-            var result =  _unitOfWork.Category.GetAll();
+            var result = _unitOfWork.Category.GetAll();
             return View(result);
         }
         public IActionResult Create()
@@ -26,7 +26,7 @@ namespace Bulky_Web.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            if(obj.Name == "test")
+            if (obj.Name == "test")
             {
                 ModelState.AddModelError("name", "Name cant be Test");
                 return View(obj);
@@ -53,8 +53,8 @@ namespace Bulky_Web.Controllers
             }
             else
             {
-                var result = _unitOfWork.Category.Get( x => x.Id == id);
-                if(result != null)
+                var result = _unitOfWork.Category.Get(x => x.Id == id);
+                if (result != null)
                 {
 
                     return View(result);
@@ -63,7 +63,7 @@ namespace Bulky_Web.Controllers
             }
         }
         [HttpPost]
-        public  IActionResult Edit(Category obj)
+        public IActionResult Edit(Category obj)
         {
             if (obj.Name == "test")
             {
@@ -85,14 +85,15 @@ namespace Bulky_Web.Controllers
 
         public IActionResult Delete(int id)
         {
-            var result =  _unitOfWork.Category.GetById(id);
+            var result = _unitOfWork.Category.GetById(id);
             if (result != null)
             {
                 _unitOfWork.Category.Delete(result);
                 _unitOfWork.save();
                 TempData["Sucsess"] = " Category Deleted Sucessfuly";
                 return RedirectToAction("Index");
-            }else
+            }
+            else
             {
                 return NotFound();
             }
