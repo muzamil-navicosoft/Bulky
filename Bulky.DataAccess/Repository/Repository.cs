@@ -17,45 +17,38 @@ namespace Bulky.DataAccess.Repository
             this._dbSet = _projectContext.Set<T>();
 
         }
-        public void Add(T entity)
-        {
-            _dbSet.AddAsync(entity);
-        }
-        public T Get(Expression<Func<T, bool>> predicate)
-        {
-            IQueryable<T> query = _dbSet;
-            query = query.Where(predicate);
-            return   query.FirstOrDefault();
-        }
-
-        public void Delete(T entity)
-        {
-            _dbSet.Remove(entity);
-        }
-
-        public void DeleteRange(IEnumerable<T> entities)
-        {
-            _dbSet.RemoveRange(entities);
-        }
-
 
         public IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
         }
-
+        public T Get(Expression<Func<T, bool>> predicate)
+        {
+            IQueryable<T> query = _dbSet.Where(predicate);
+            //IQueryable<T> query = _dbSet;
+            //query = query.Where(predicate);
+            return   query.FirstOrDefault();
+        }
+        public T GetById(object id)
+        {
+            return _dbSet.Find(id);
+        }
+        public void Add(T entity)
+        {
+            _dbSet.AddAsync(entity);
+        }
+        public void Delete(T entity)
+        {
+            _dbSet.Remove(entity);
+        }
+        public void DeleteRange(IEnumerable<T> entities)
+        {
+            _dbSet.RemoveRange(entities);
+        }
         public IQueryable<T> Getting(Expression<Func<T, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public T GetById(object id)
-        {
-            return _dbSet.Find(id);
-        }
-        //public void Update(T entity)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
