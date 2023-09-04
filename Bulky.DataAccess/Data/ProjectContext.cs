@@ -20,9 +20,45 @@ namespace Bulky.DataAccess
             );
             
             model.Entity<Product>().HasData(
-                new Product { Id = 1, Title = "Fortune of Time", Author = "Billay Spark", Description = "Testing Discription", ISBN = "SWD999900100", ListPrice = 99 , Price = 90, Price50 = 85 , Price100 = 80},
-                new Product { Id = 2, Title = "Fortune of Days", Author = "Billay - X", Description = "Testing adsfasdfasdfasd Discription", ISBN = "SWD999900100", ListPrice = 99 , Price = 90, Price50 = 85 , Price100 = 80},
-                new Product { Id = 3, Title = "Fortune of Nights", Author = "Billay - Y", Description = "Testing asdfasdfasdf Discription", ISBN = "SWD999900100", ListPrice = 99 , Price = 90, Price50 = 85 , Price100 = 80}
+                new Product {   
+                                Id = 1, 
+                                Title = "Fortune of Time", 
+                                Author = "Billay Spark", 
+                                Description = "Testing Discription", 
+                                ISBN = "SWD999900100", 
+                                ListPrice = 99 , 
+                                Price = 90, 
+                                Price50 = 85 , 
+                                Price100 = 80,
+                                CategoryId = 1,
+                                ImageUrl =""
+                            },
+                new Product { 
+                                Id = 2, 
+                                Title = "Fortune of Days", 
+                                Author = "Billay - X", 
+                                Description = "Testing adsfasdfasdfasd Discription", 
+                                ISBN = "SWD999900100", 
+                                ListPrice = 99 , 
+                                Price = 90, 
+                                Price50 = 85 , 
+                                Price100 = 80,
+                                CategoryId = 1,
+                                ImageUrl =""
+                            },
+                new Product {
+                                Id = 3, 
+                                Title = "Fortune of Nights", 
+                                Author = "Billay - Y", 
+                                Description = "Testing asdfasdfasdf Discription", 
+                                ISBN = "SWD999900100", 
+                                ListPrice = 99 , 
+                                Price = 90, 
+                                Price50 = 85 , 
+                                Price100 = 80,
+                                CategoryId = 1,
+                                ImageUrl =""
+                            }
             );
         }
     }
