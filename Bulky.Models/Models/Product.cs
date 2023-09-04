@@ -36,5 +36,9 @@ namespace Bulky.Models.Models
         [Display(Name = "Price for 100+")]
         [Range(1, 1000)]
         public double Price100 { get; set; }
+
+        public int? CategoryId { get ; set; }
+
+        public  Category? Category { get; set; }
     }
 }
